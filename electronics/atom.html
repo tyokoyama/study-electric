@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8" />
+	<title>原子の構造</title>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script type="text/javascript" src="atom.js"></script>
+</head>
+<body>
+	<div ng-controller="MainCtrl">
+		<p>
+			原子は原子核（黄色い丸）と、その周りを回る電子（青い丸）で構成される。例えば、水素原子は価電子が1個なので、原子核の周りを1個の電子が回っている。
+		</p>
+		<figure>
+			<figcaption>水素原子の動き</figcaption>
+			<canvas id="atom_canvas">
+			</canvas>
+			{{nocanvas}}
+		</figure>
+	</div>
+	<div ng-controller="MultiCtrl">
+		<figure>
+			<figcaption>価電子が複数の原子の例</figcaption>
+			<canvas id="multi_atom_canvas">
+			</canvas>
+			{{nocanvas}}
+		</figure>
+		<form>
+			<label for="electron">価電子の数を変える</label>
+			<select id="electron" ng-model="electron" ng-change="change()">
+				<option value="3">In（インジウム）価電子3個</option>
+				<option value="4" selected>Si（シリコン）価電子4個</option>
+				<option value="5">As（ひ素）価電子5個</option>
+			</select>
+		</form>
+	</div>
+</body>
+</html>

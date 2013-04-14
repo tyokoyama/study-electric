@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8" />
+	<title>半導体</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script type="text/javascript" src="semiconductor.js"></script>
+</head>
+<body>
+	<div>
+		<p>半導体には真性半導体と不純物半導体があります。不純物半導体にもn形半導体とp形半導体の2種類があります。</p>
+		<figure>
+			<figcaption>半導体の種類</figcaption>
+			<ul>
+				<li>
+					半導体
+					<ul>
+						<li>真性半導体</li>
+						<li>
+							不純物半導体
+							<ul>
+								<li>n形半導体（自由電子が多い）</li>
+								<li>p形半導体（正孔が多い）</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</figure>
+		<div class="experiment" ng-controller="intrinsicCtrl">
+			<div>
+				<figure class="anim">
+					<figcaption>真性半導体の図</figcaption>
+					<canvas id="canvas_intrinsic"></canvas>
+					{{nocanvas}}
+				</figure>
+				<input type="button" value="{{int_power_status}}" ng-click="power_int_click()" />
+			</div>
+			<p class="description">
+				白い丸で描かれたものは、プラスの電荷を持った正孔といい、動いている青い丸で描かれたものがマイナスの電荷を持った自由電子といいます。真性半導体に負荷をかけると、連結している電子の制約が弱くなり、自由に動くようになります。電子が無くなったところには正孔ができます。自由電子はマイナスの電荷を持っていますから、プラスの電荷を持った正孔に引き寄せられて、再度くっつく事を繰り返します。
+			</p>
+		</div>
+		<div class="experiment" ng-controller="nImpurityCtrl">
+			<figure class="anim">
+				<figcaption>n形半導体の図</figcaption>
+				<canvas id="canvas_n_impurity"></canvas>
+				{{nocanvas}}
+			</figure>
+		</div>
+		<div class="experiment" ng-controller="pImpurityCtrl">
+			<figure class="anim">
+				<figcaption>p形半導体の図</figcaption>
+				<canvas id="canvas_p_impurity"></canvas>
+				{{nocanvas}}
+			</figure>
+		</div>
+	</div>
+</body>
+</html>

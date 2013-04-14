@@ -1,0 +1,23 @@
+figure.anim {
+	float: left;
+}
+
+.description {
+	float: left;
+	width: 200px;
+}
+
+.experiment {
+	width: 700px;
+	vertical-align: top;
+	clear: left;
+}
+
+.power_off {
+	display: block;
+	border: solid 2px #000000;
+	text-align: center;
+	vertical-align: middle;
+	width: 180px;
+	height: 30px;
+}

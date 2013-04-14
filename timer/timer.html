@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="utf-8" />
+	<title>残り時間タイマー</title>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script type="text/javascript" src="timer.js"></script>
+</head>
+<body>
+	<div ng-controller="mainCtrl">
+		<figure>
+			<canvas id="timer_canvas">
+			</canvas>
+			{{nocanvas}}
+		</figure>
+		<form>
+			<input type="button" value="タイマー追加" ng-click="timer_add()" />
+		</form>
+		<form>
+			<input type="button" value="スタート" ng-click="timer_start()"/>
+			<input type="button" value="ストップ" ng-click="timer_stop()" />
+		</form>
+	</div>
+</body>
+</html>
