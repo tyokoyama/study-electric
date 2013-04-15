@@ -18,6 +18,12 @@ var direction_count = 0;
 var direction_index = 0;
 var direction_table = [{x: -1, y: -1}, {x: 1, y: -1}, {x: -1, y: 1}, {x: 1, y: 1}];
 
+var n_random_x = 0;
+var n_random_y = 0;
+var n_direction_count = 0;
+var n_direction_index = 0;
+var n_power_on = false;
+
 function intrinsicCtrl($scope) {
 	// 真性半導体
 	canvas_intrinsic = document.getElementById('canvas_intrinsic');
@@ -33,15 +39,12 @@ function intrinsicCtrl($scope) {
 	random_y = 75;
 	$scope.int_power_status = "負荷をかける";
 	$scope.power_int_click = function() {
-		var elem = document.getElementById('power_int');
 		$scope.power_on = !$scope.power_on;
 		if($scope.power_on) {
-//			elem.innerText = "負荷がかかっています";
 			$scope.int_power_status = "負荷がかかっています";
-		} else {
 			random_x = 65;
 			random_y = 75;
-//			elem.innerText = "負荷をかける";
+		} else {
 			$scope.int_power_status = "負荷をかける";
 		}
 		power_on = !power_on;
@@ -66,6 +69,19 @@ function nImpurityCtrl($scope) {
 		$scope.nocanvas = "このブラウザでは表示できません。"
 		return;
 	}
+
+	$scope.n_power_status = "負荷をかける";
+	$scope.power_n_click = function() {
+		$scope.power_on = !$scope.power_on;
+		if($scope.power_on) {
+			$scope.n_power_status = "負荷がかかっています";
+			n_random_x = 90;
+			n_random_y = 150;
+		} else {
+			$scope.n_power_status = "負荷をかける";
+		}
+		n_power_on = !n_power_on;
+	};
 
 	ctx_nimpurity = canvas_nimpurity.getContext('2d');
 
@@ -281,7 +297,39 @@ function nimpurityAnimation() {
 		drawArc(ctx_nimpurity, x + 25, 135);
 
 		ctx_nimpurity.rect(x, 90, 30, 30);
-		ctx_nimpurity.strokeText("Si", x + 10, 110);
+		var elem_name = "Si";
+		if(i == 1 && x == 90) {
+			elem_name = "As";
+			ctx_nimpurity.moveTo(x + 30, 120);
+			ctx_nimpurity.lineTo(x + 60, 150);
+
+			if(n_power_on) {
+				// 電子が自由に動く
+				n_direction_count++;
+				if(n_direction_count > 5) {
+					n_direction_index++;
+
+					if(n_direction_index >= direction_table.length) {
+						n_direction_index = 0;
+					}
+
+					n_direction_count = 0;
+				}
+
+				n_random_x += (direction_table[n_direction_index].x * Math.floor( Math.random() * 10));
+				if(n_random_x > canvas_nimpurity.width) n_random_x = canvas_nimpurity.width;
+				if(n_random_x < 0) n_random_x = 0;
+
+				n_random_y += (direction_table[n_direction_index].y * Math.floor( Math.random() * 10));
+				if(n_random_y > canvas_nimpurity.height) n_random_y = canvas_nimpurity.height;
+				if(n_random_y < 0) n_random_y = 0;
+
+				drawArc(ctx_nimpurity, n_random_x, n_random_y);
+			} else {
+				drawArc(ctx_nimpurity, x + 60, 150);
+			}
+		}
+		ctx_nimpurity.strokeText(elem_name, x + 10, 110);
 	}
 
 	ctx_nimpurity.closePath();
@@ -354,7 +402,11 @@ function pimpurityAnimation() {
 		ctx_pimpurity.moveTo(x + 30, 115);
 		ctx_pimpurity.lineTo(xx, 115);
 
-		drawArc(ctx_pimpurity, x + 45, 95);
+		if(i == 1) {
+			drawArc(ctx_pimpurity, x + 45, 95, "#ffffff");
+		} else {
+			drawArc(ctx_pimpurity, x + 45, 95);
+		}
 		drawArc(ctx_pimpurity, x + 45, 115);
 
 		// 下側縦線
@@ -367,7 +419,11 @@ function pimpurityAnimation() {
 		drawArc(ctx_pimpurity, x + 25, 135);
 
 		ctx_pimpurity.rect(x, 90, 30, 30);
-		ctx_pimpurity.strokeText("Si", x + 10, 110);
+		var elem_name = "Si";
+		if(i == 1 && x == 90) {
+			elem_name = "In";
+		}
+		ctx_pimpurity.strokeText(elem_name, x + 10, 110);
 	}
 
 	ctx_pimpurity.closePath();

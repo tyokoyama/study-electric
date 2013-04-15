@@ -38,22 +38,45 @@
 				<input type="button" value="{{int_power_status}}" ng-click="power_int_click()" />
 			</div>
 			<p class="description">
-				白い丸で描かれたものは、プラスの電荷を持った正孔といい、動いている青い丸で描かれたものがマイナスの電荷を持った自由電子といいます。真性半導体に負荷をかけると、連結している電子の制約が弱くなり、自由に動くようになります。電子が無くなったところには正孔ができます。自由電子はマイナスの電荷を持っていますから、プラスの電荷を持った正孔に引き寄せられて、再度くっつく事を繰り返します。
+				半導体の純度をきわめて高く精製したものを真性半導体とよびます。図のように互いに隣り合った原子は価電子を1個ずつ共有して結びつきます。（<strong>共有結合</strong>といいます）
+				負荷をかけると（負荷をかけるボタンを押してみてください。）、次のように電気の伝導が行われれます。
+				これを繰り返すと自由電子や正孔の移動が起こり、半導体中で電気伝導が行われる。自由電子や正孔のことを<strong>キャリヤ</strong>といいます。
 			</p>
+			<ol class="description">
+				<li>負荷を与える</li>
+				<li>価電子は自由電子となり自由に移動できるようになる</li>
+				<li>価電子が移動した後は、正の電荷をもった<strong>正孔</strong>（白い丸）ができる</li>
+				<li>正孔は近くの価電子を吸引する</li>
+				<li>価電子が吸引されると別の正孔ができる</li>
+			</ol>
 		</div>
 		<div class="experiment" ng-controller="nImpurityCtrl">
-			<figure class="anim">
-				<figcaption>n形半導体の図</figcaption>
-				<canvas id="canvas_n_impurity"></canvas>
-				{{nocanvas}}
-			</figure>
+			<div>
+				<figure class="anim">
+					<figcaption>n形半導体の図</figcaption>
+					<canvas id="canvas_n_impurity"></canvas>
+					{{nocanvas}}
+				</figure>
+				<input type="button" value="{{n_power_status}}" ng-click="power_n_click()" />
+			</div>
+			<p class="description">
+				真性半導体に5価のひ素などを混ぜて作った半導体で共有結合した時に価電子が1個あまる。余った電子は自由電子となり電気伝導の役割を果たします。自由電子が正孔よりも多い半導体を<strong>n形半導体</strong>といいます。混ぜた5価の不純物を<strong>ドナー</strong>といいます。
+			</p>
+			<p>
+				n形半導体で、自由電子のように多数を占めるキャリヤを多数キャリヤといい、正孔のように少数のキャリヤを少数キャリヤといいます。
+			</p>
 		</div>
 		<div class="experiment" ng-controller="pImpurityCtrl">
-			<figure class="anim">
-				<figcaption>p形半導体の図</figcaption>
-				<canvas id="canvas_p_impurity"></canvas>
-				{{nocanvas}}
-			</figure>
+			<div>
+				<figure class="anim">
+					<figcaption>p形半導体の図</figcaption>
+					<canvas id="canvas_p_impurity"></canvas>
+					{{nocanvas}}
+				</figure>
+			</div>
+			<p class="description">
+				真性半導体に3価のインジウムなどを混ぜて作った半導体で共有結合した時に価電子が1個不足します。これにより、正孔が生じ電気伝導の役割を果たします。このように正孔が自由電子よりも多い半導体を<strong>p形半導体</strong>といい、3価の不純物の事を<strong>アクセプタ</strong>といいます。また、p形半導体では、正孔が多数キャリヤで、自由電子が少数キャリヤとなります。
+			</p>
 		</div>
 	</div>
 </body>

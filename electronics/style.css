@@ -1,5 +1,6 @@
 figure.anim {
 	float: left;
+	margin-right: 20px;
 }
 
 .description {
@@ -7,10 +8,15 @@ figure.anim {
 	width: 200px;
 }
 
+ol.description {
+	width: 200px;
+	float: left;
+}
+
 .experiment {
-	width: 700px;
+	width: 750px;
 	vertical-align: top;
-	clear: left;
+	clear: both;
 }
 
 .power_off {
